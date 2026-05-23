@@ -2,8 +2,8 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>梁钟丹法考上岸打卡小屋</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>梁钟丹法考上岸打卡小屋 · 手机优化版</title>
   <style>
     :root {
       --pink-50: #fff6fb;
@@ -504,6 +504,140 @@
       transform: rotate(-10deg);
     }
 
+
+    .sleep-card,
+    .milktea-card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .sleep-card {
+      background: linear-gradient(135deg, rgba(233, 221, 255, 0.82), rgba(255, 250, 240, 0.9));
+    }
+
+    .sleep-card::after {
+      content: "🌙";
+      position: absolute;
+      right: 18px;
+      bottom: -18px;
+      font-size: 112px;
+      opacity: 0.11;
+      transform: rotate(-10deg);
+      pointer-events: none;
+    }
+
+    .milktea-card {
+      background: linear-gradient(135deg, rgba(255, 242, 184, 0.86), rgba(255, 230, 243, 0.78));
+    }
+
+    .milktea-card::after {
+      content: "🧋";
+      position: absolute;
+      right: 20px;
+      bottom: -14px;
+      font-size: 104px;
+      opacity: 0.12;
+      transform: rotate(8deg);
+      pointer-events: none;
+    }
+
+    .sleep-box {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 12px;
+    }
+
+    .sleep-window-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid var(--border);
+      color: #7b4c90;
+      font-size: 13px;
+      font-weight: 950;
+      white-space: nowrap;
+    }
+
+    .sleep-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .sleep-mini-stat {
+      padding: 12px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.68);
+      border: 1px solid rgba(255, 121, 175, 0.16);
+    }
+
+    .sleep-mini-stat .label {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .sleep-mini-stat strong {
+      display: block;
+      margin-top: 5px;
+      color: #d93184;
+      font-size: 23px;
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+
+    .sleep-result {
+      padding: 14px 16px;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.68);
+      border: 1px solid rgba(255, 121, 175, 0.16);
+      line-height: 1.7;
+      font-weight: 800;
+      color: #6b415a;
+    }
+
+    .sleep-log-list {
+      display: grid;
+      gap: 8px;
+      max-height: 260px;
+      overflow: auto;
+      padding-right: 4px;
+    }
+
+    .sleep-log-item {
+      display: grid;
+      grid-template-columns: 76px 82px 1fr;
+      gap: 8px;
+      align-items: center;
+      padding: 10px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.62);
+      border: 1px solid rgba(255, 121, 175, 0.14);
+      font-weight: 800;
+    }
+
+    .sleep-log-date { color: #d93184; font-weight: 950; }
+    .sleep-log-status {
+      justify-self: start;
+      padding: 5px 9px;
+      border-radius: 999px;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+    .sleep-log-status.success { background: rgba(223, 248, 236, 0.9); color: #2e6b52; }
+    .sleep-log-status.fail { background: rgba(255, 230, 243, 0.9); color: #c73578; }
+    .sleep-log-note { color: #6b415a; line-height: 1.45; font-size: 13px; }
+
+    .milktea-actions {
+      position: relative;
+      z-index: 1;
+    }
+
     .voucher-box {
       position: relative;
       z-index: 1;
@@ -784,30 +918,224 @@
       border-top: 1px dashed rgba(232, 62, 140, 0.25);
     }
 
+
+    .mobile-summary,
+    .mobile-bottom-bar {
+      display: none;
+    }
+
+    button:disabled {
+      opacity: 0.56;
+      cursor: not-allowed;
+      transform: none;
+      filter: grayscale(0.2);
+    }
+
+    .mobile-summary {
+      margin-top: 14px;
+      border: 1px solid var(--border);
+      border-radius: 26px;
+      padding: 16px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.86), rgba(255, 230, 243, 0.82));
+      box-shadow: var(--shadow-soft);
+    }
+
+    .mobile-summary-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .mobile-summary-top strong {
+      display: block;
+      margin-top: 3px;
+      font-size: 34px;
+      line-height: 1;
+      color: #d93184;
+      letter-spacing: -0.04em;
+    }
+
+    .mobile-kicker {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .mobile-chip {
+      max-width: 52%;
+      padding: 9px 11px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.75);
+      border: 1px solid var(--border);
+      color: #d93184;
+      font-size: 12px;
+      font-weight: 900;
+      text-align: center;
+      line-height: 1.35;
+    }
+
+    .mobile-quick-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .mobile-quick-grid .btn {
+      width: 100%;
+      min-height: 48px;
+      padding: 11px 10px;
+    }
+
+    .mobile-quick-grid .btn:nth-child(3),
+    .mobile-quick-grid .btn:nth-child(4) {
+      grid-column: auto;
+    }
+
+    .mobile-coffee-line {
+      margin-top: 12px;
+      padding: 10px 12px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.68);
+      color: #754c16;
+      font-size: 13px;
+      font-weight: 900;
+      line-height: 1.45;
+    }
+
+    .mobile-bottom-bar {
+      position: fixed;
+      left: 12px;
+      right: 12px;
+      bottom: calc(10px + env(safe-area-inset-bottom));
+      z-index: 88;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 7px;
+      padding: 8px;
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+    }
+
+    .mobile-bottom-bar button {
+      min-height: 44px;
+      border-radius: 18px;
+      background: rgba(255, 230, 243, 0.86);
+      color: #d93184;
+      font-weight: 950;
+      font-size: 12px;
+      border: 1px solid rgba(255, 121, 175, 0.18);
+    }
+
+    .mobile-bottom-bar button:nth-child(1),
+    .mobile-bottom-bar button:nth-child(2) {
+      background: linear-gradient(135deg, #ff6caf, #f94f9e);
+      color: #fff;
+      box-shadow: 0 8px 16px rgba(249, 79, 158, 0.2);
+    }
+
     @media (max-width: 900px) {
       .hero-grid, .grid { grid-template-columns: 1fr; }
       .stats { grid-template-columns: repeat(2, 1fr); }
       .topbar { align-items: flex-start; flex-direction: column; }
-      .hero::after { opacity: 0.35; right: -20px; top: 80px; }
+      .hero::after { opacity: 0.24; right: -34px; top: 78px; font-size: 34px; }
       .badge-wall { grid-template-columns: repeat(2, 1fr); }
       .log-item { grid-template-columns: 1fr auto; }
       .log-date { grid-column: 1 / -1; }
     }
 
-    @media (max-width: 560px) {
-      .page { width: min(100% - 20px, 1180px); padding-top: 12px; }
-      .hero { padding: 20px; border-radius: 28px; }
-      .brand { align-items: flex-start; }
-      .kitty-face { width: 64px; height: 56px; }
-      .eye { top: 27px; }
-      .eye.left { left: 18px; }
-      .eye.right { right: 18px; }
-      .nose { top: 36px; }
-      .stats { grid-template-columns: 1fr; }
+    @media (max-width: 700px) {
+      body { padding-bottom: calc(76px + env(safe-area-inset-bottom)); }
+      .mobile-summary { display: block; }
+      .mobile-bottom-bar { display: grid; }
+      .page { width: min(100% - 20px, 1180px); padding: 12px 0 28px; }
+      .hero { padding: 16px; border-radius: 26px; }
+      .hero-grid { gap: 12px; margin-top: 14px; }
+      .brand { align-items: center; gap: 12px; }
+      .kitty-face { width: 58px; height: 50px; border-width: 2px; }
+      .kitty-face::before, .kitty-face::after { top: -9px; width: 20px; height: 20px; border-width: 2px; }
+      .bow { transform: scale(0.82); transform-origin: top right; right: -2px; }
+      .eye { top: 24px; width: 6px; height: 8px; }
+      .eye.left { left: 17px; }
+      .eye.right { right: 17px; }
+      .nose { top: 33px; width: 9px; height: 6px; }
+      h1 { font-size: 24px; line-height: 1.12; letter-spacing: -0.03em; }
+      .subtitle { margin-top: 5px; font-size: 12px; line-height: 1.45; }
+      .date-pill { padding: 8px 11px; font-size: 12px; box-shadow: none; }
+      #todayText { max-width: 100%; white-space: normal; }
+      .countdown-card, .encourage-card, .card { border-radius: 22px; }
+      .countdown-card { min-height: auto; padding: 16px; gap: 10px; }
+      .countdown-label { font-size: 12px; }
+      .days { margin: 5px 0; }
+      .days strong { font-size: 52px; }
+      .days span { font-size: 17px; }
+      .stage-message { padding: 10px 12px; border-radius: 16px; font-size: 13px; line-height: 1.55; }
+      .encourage-card { padding: 15px; }
+      .mini-title { margin-bottom: 8px; font-size: 16px; }
+      .quote { min-height: auto; padding: 12px; border-radius: 16px; font-size: 13px; line-height: 1.6; }
+      .actions-row { gap: 8px; }
+      .actions-row .btn { flex: 1 1 auto; min-height: 44px; }
+      .stats { margin: 14px 0 0; gap: 10px; }
+      .stat { padding: 12px; border-radius: 20px; }
+      .stat .label { font-size: 12px; }
+      .stat .num { margin-top: 4px; font-size: 23px; }
+      .grid { margin-top: 14px; gap: 14px; }
+      .card { padding: 16px; }
+      .card h2 { margin-bottom: 12px; font-size: 19px; }
+      .hint { font-size: 12px; line-height: 1.55; margin-bottom: 12px; }
+      .today-hours { padding: 13px; border-radius: 20px; }
+      .today-hours strong { font-size: 32px; }
+      .input-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+      .input-row .btn { padding: 10px 8px; min-height: 48px; font-size: 13px; }
       .custom-time { grid-template-columns: 1fr; }
-      .subject-note { grid-template-columns: 1fr; }
+      input, textarea, select { border-radius: 16px; padding: 12px; font-size: 16px; }
+      textarea { min-height: 100px; }
+      .subject-top { grid-template-columns: 1fr; gap: 8px; }
+      .subject-value { justify-self: flex-start; padding: 4px 9px; border-radius: 999px; background: rgba(255, 230, 243, 0.8); }
+      .subject-list { gap: 8px; }
+      .subject-item { padding: 10px; border-radius: 16px; }
+      .subject-top { grid-template-columns: minmax(0, 1fr) auto; gap: 6px; margin-bottom: 6px; }
+      .subject-name input { padding: 9px 10px; font-size: 15px; }
+      .subject-value { justify-self: flex-end; padding: 4px 8px; border-radius: 999px; background: rgba(255, 230, 243, 0.8); font-size: 13px; }
+      #subjectCard input[type="range"] { height: 8px; }
+      .subject-note { grid-template-columns: minmax(0, 1fr) 54px 54px; gap: 6px; margin-top: 6px; }
+      .subject-note input { padding: 9px 10px; font-size: 14px; }
+      .subject-note .btn { width: auto; min-height: 36px; padding: 6px 6px; font-size: 12px; }
+      .sleep-stats { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+      .sleep-mini-stat { padding: 10px 8px; border-radius: 16px; }
+      .sleep-mini-stat strong { font-size: 20px; }
+      .sleep-log-item { grid-template-columns: 62px 72px 1fr; padding: 9px; gap: 6px; }
+      .sleep-log-note { font-size: 12px; }
       .calendar { gap: 5px; }
-      .day { min-height: 48px; padding: 6px; border-radius: 13px; }
+      .weekday { font-size: 11px; }
+      .day { min-height: 46px; padding: 5px; border-radius: 13px; font-size: 11px; }
+      .day .hours { font-size: 10px; }
+      .logs { max-height: 300px; }
+      .log-item { gap: 8px; padding: 10px; border-radius: 16px; }
+      .toast { bottom: calc(82px + env(safe-area-inset-bottom)); min-width: min(420px, calc(100% - 24px)); padding: 13px 14px; border-radius: 18px; }
+      .modal-backdrop { align-items: end; padding: 12px; }
+      .modal { width: 100%; border-radius: 28px 28px 20px 20px; padding: 20px 16px calc(18px + env(safe-area-inset-bottom)); }
+      .modal .big { font-size: 44px; margin-bottom: 4px; }
+      .modal h3 { font-size: 21px; }
+      .modal p { font-size: 13px; line-height: 1.65; }
+      .timer-time { width: 100%; padding: 18px 10px; border-radius: 24px; font-size: clamp(48px, 17vw, 72px); }
+      .timer-actions { display: grid; grid-template-columns: 1fr 1fr; }
+      .timer-actions .btn { width: 100%; min-height: 50px; }
+      .footer { margin-top: 14px; padding: 12px; font-size: 12px; }
+    }
+
+    @media (max-width: 380px) {
+      .page { width: min(100% - 14px, 1180px); }
+      h1 { font-size: 22px; }
+      .input-row { grid-template-columns: 1fr; }
+      .mobile-bottom-bar { left: 8px; right: 8px; gap: 6px; }
+      .mobile-bottom-bar button { font-size: 10px; min-height: 42px; }
+      .subject-note { grid-template-columns: 1fr; }
+      .subject-note .btn { width: 100%; }
     }
   </style>
 </head>
@@ -824,7 +1152,7 @@
           </div>
           <div>
             <h1>梁钟丹法考上岸打卡小屋</h1>
-            <p class="subtitle">Kitty陪你一起学！ ·每学习 20 小时兑换一杯咖啡哦 ☕</p>
+            <p class="subtitle">Kitty陪你一起学 · 每 20 小时兑换一杯咖啡 ☕</p>
           </div>
         </div>
         <div class="date-pill" id="todayText">🎀 今天</div>
@@ -869,8 +1197,25 @@
       </div>
     </section>
 
+    <section class="mobile-summary" aria-label="手机快速打卡面板">
+      <div class="mobile-summary-top">
+        <div>
+          <span class="mobile-kicker">今日学习</span>
+          <strong><span id="mobileTodayHours">0</span> h</strong>
+        </div>
+        <div class="mobile-chip" id="mobileStageText">距离考试 -- 天</div>
+      </div>
+      <div class="mobile-quick-grid">
+        <button class="btn" data-add-hours="0.5">开始 30 分钟</button>
+        <button class="btn" data-add-hours="1">开始 1 小时</button>
+        <button class="btn cream" id="mobileSleepBtn" type="button">早睡打卡</button>
+        <button class="btn secondary" id="mobileNoteBtn" type="button">写今日备注</button>
+      </div>
+      <div class="mobile-coffee-line" id="mobileCoffeeLine">☕ 正在计算咖啡进度……</div>
+    </section>
+
     <main class="grid">
-      <section class="card">
+      <section class="card priority-card" id="checkinCard">
         <h2>🎀 今日学习打卡</h2>
         <p class="hint">点击学习时长后会弹出倒计时，倒计时真正结束后才会自动累计；刷新页面后倒计时会继续，不能提前完成。</p>
         <div class="checkin-panel">
@@ -899,9 +1244,9 @@
         </div>
       </section>
 
-      <section class="card coffee-card">
+      <section class="card coffee-card priority-card" id="coffeeCard">
         <h2>☕ 董纪君咖啡奖励站</h2>
-        <p class="hint">规则：每累计学习满 20 小时，即可找董纪君兑换一杯咖啡。总学习时长不会清零，只记录已兑换杯数。</p>
+        <p class="hint">规则：每累计学习满 20 小时，即可找“董纪君”兑换一杯咖啡。总学习时长不会清零，只记录已兑换杯数。</p>
         <div class="voucher-box">
           <div class="voucher" id="coffeeInfo">正在计算咖啡进度……</div>
           <div class="progress-wrap">
@@ -918,13 +1263,84 @@
         </div>
       </section>
 
-      <section class="card">
+
+      <section class="card sleep-card priority-card" id="sleepCard">
+        <h2>🌙 早睡打卡站</h2>
+        <p class="hint">规则：每晚 23:00 到次日 00:30 之间点击“我准备睡啦”，算早睡成功；超过 00:30 或未打卡，都会判定失败并中断连续早睡。</p>
+        <div class="sleep-box">
+          <div class="today-hours">
+            <div>
+              <div class="label">今晚 / 昨晚作息状态</div>
+              <strong id="sleepStatusText">待打卡</strong>
+            </div>
+            <div class="sleep-window-pill" id="sleepWindowText">23:00–00:30</div>
+          </div>
+
+          <div class="sleep-stats" aria-label="早睡统计">
+            <div class="sleep-mini-stat">
+              <div class="label">连续早睡</div>
+              <strong><span id="sleepStreak">0</span> 天</strong>
+            </div>
+            <div class="sleep-mini-stat">
+              <div class="label">本周早睡</div>
+              <strong><span id="sleepWeekCount">0</span> / 7</strong>
+            </div>
+            <div class="sleep-mini-stat">
+              <div class="label">累计早睡</div>
+              <strong><span id="sleepTotalSuccess">0</span> 天</strong>
+            </div>
+          </div>
+
+          <textarea id="sleepNote" placeholder="睡前备注：比如今天有点累、明天继续民法、今晚要好好睡"></textarea>
+          <div class="actions-row">
+            <button class="btn mint" id="sleepCheckinBtn">我准备睡啦 🌙</button>
+            <button class="btn secondary" id="undoSleepBtn">撤回今晚记录</button>
+          </div>
+          <div class="sleep-result" id="sleepResult">今晚 23:00 后可以开始早睡打卡。睡好也是上岸计划的一部分。</div>
+        </div>
+      </section>
+
+      <section class="card milktea-card priority-card" id="milkTeaCard">
+        <h2>🧋 董纪君奶茶奖励站</h2>
+        <p class="hint">规则：连续早睡每满 7 天，即可获得 1 张“董纪君请客奶茶券”。失败会中断连续早睡，但不会删除历史累计和已经获得的奶茶券。</p>
+        <div class="voucher-box">
+          <div class="voucher" id="milkTeaInfo">正在计算奶茶奖励进度……</div>
+          <div class="progress-wrap">
+            <div class="progress-head">
+              <span>下一杯奶茶进度</span>
+              <span id="milkTeaProgressText">0 / 7 天</span>
+            </div>
+            <div class="progress"><div class="bar" id="milkTeaBar"></div></div>
+          </div>
+          <div class="sleep-stats">
+            <div class="sleep-mini-stat">
+              <div class="label">已获得奶茶券</div>
+              <strong><span id="milkTeaEarnedCount">0</span> 张</strong>
+            </div>
+            <div class="sleep-mini-stat">
+              <div class="label">可兑换</div>
+              <strong><span id="milkTeaAvailableCount">0</span> 张</strong>
+            </div>
+            <div class="sleep-mini-stat">
+              <div class="label">已兑换</div>
+              <strong><span id="milkTeaRedeemedCount">0</span> 杯</strong>
+            </div>
+          </div>
+          <div class="actions-row milktea-actions">
+            <button class="btn cream" id="redeemMilkTeaBtn">兑换一杯奶茶</button>
+            <button class="btn secondary" id="jumpSleepLogsBtn">查看早睡记录</button>
+          </div>
+          <div class="sleep-log-list" id="sleepLogs"></div>
+        </div>
+      </section>
+
+      <section class="card" id="subjectCard">
         <h2>📚 我的法考进度</h2>
-        <p class="hint">进度完全由自己设置。可以拖动每个科目的进度条，也可以修改备注。</p>
+        <p class="hint">进度完全由她自己设置。可以拖动每个科目的进度条，也可以修改备注。</p>
         <div class="subject-list" id="subjectList"></div>
       </section>
 
-      <section class="card energy-card">
+      <section class="card energy-card" id="energyCard">
         <h2>✨ Kitty 能量与徽章</h2>
         <p class="hint">学习越多，Kitty 能量越高；连续打卡和累计学习会自动解锁可爱徽章。</p>
         <div class="progress-wrap">
@@ -938,13 +1354,13 @@
         <div class="badge-wall" id="badgeWall" style="margin-top: 14px;"></div>
       </section>
 
-      <section class="card">
+      <section class="card" id="calendarCard">
         <h2>🗓️ 粉色打卡日历</h2>
         <p class="hint">颜色越深，代表当天学习时间越长。金色感来自你认真坚持的每一天。</p>
         <div class="calendar" id="calendar"></div>
       </section>
 
-      <section class="card">
+      <section class="card" id="logsCard">
         <h2>📝 学习记录</h2>
         <p class="hint">自动记录每天学习时长和备注，方便复盘自己最近学了什么。</p>
         <div class="logs" id="logs"></div>
@@ -964,6 +1380,14 @@
       页面采用 Kitty 风格的粉色小猫与蝴蝶结元素，未使用官方图片，适合个人学习打卡使用。
     </div>
   </div>
+
+  <nav class="mobile-bottom-bar" aria-label="手机底部快捷操作">
+    <button type="button" data-add-hours="0.5">📚 30分钟</button>
+    <button type="button" data-add-hours="1">⏱️ 1小时</button>
+    <button type="button" id="jumpSleepBtn">🌙 早睡</button>
+    <button type="button" id="focusNoteBtn">💌 备注</button>
+    <button type="button" id="jumpLogsBtn">📝 记录</button>
+  </nav>
 
   <div class="toast" id="toast"></div>
 
@@ -993,6 +1417,9 @@
     const EXAM_DATE = "2026-09-12";
     const STORAGE_KEY = "kitty_fakao_checkin_v1";
     const TIMER_KEY = "kitty_fakao_active_timer_v2";
+    const SLEEP_OPEN_MINUTES = 23 * 60;
+    const SLEEP_CLOSE_MINUTES = 24 * 60 + 30;
+    const SLEEP_LATE_RECORD_LIMIT = 5 * 60;
     const dayMs = 24 * 60 * 60 * 1000;
 
     const defaultSubjects = [
@@ -1034,7 +1461,10 @@
       { key: "streak14", icon: "👑", title: "自律公主", desc: "连续 14 天", test: s => calcStreak(s) >= 14 },
       { key: "hours20", icon: "☕", title: "咖啡初体验", desc: "累计 20 小时", test: s => s.totalHours >= 20 },
       { key: "hours60", icon: "💖", title: "闪光少女", desc: "累计 60 小时", test: s => s.totalHours >= 60 },
-      { key: "hours100", icon: "🏆", title: "上岸预备役", desc: "累计 100 小时", test: s => s.totalHours >= 100 }
+      { key: "hours100", icon: "🏆", title: "上岸预备役", desc: "累计 100 小时", test: s => s.totalHours >= 100 },
+      { key: "sleep3", icon: "🌙", title: "月亮乖乖", desc: "连续早睡 3 天", test: s => calcSleepStreak(s) >= 3 },
+      { key: "sleep7", icon: "🧋", title: "奶茶预备", desc: "连续早睡 7 天", test: s => calcSleepStreak(s) >= 7 },
+      { key: "sleep14", icon: "🛌", title: "睡眠自律王", desc: "连续早睡 14 天", test: s => calcSleepStreak(s) >= 14 }
     ];
 
     let state = loadState();
@@ -1051,7 +1481,8 @@
           coffeeRedeemed: Number(parsed.coffeeRedeemed || 0),
           logs: parsed.logs && typeof parsed.logs === "object" ? parsed.logs : {},
           subjects: Array.isArray(parsed.subjects) && parsed.subjects.length ? parsed.subjects : JSON.parse(JSON.stringify(defaultSubjects)),
-          history: Array.isArray(parsed.history) ? parsed.history : []
+          history: Array.isArray(parsed.history) ? parsed.history : [],
+          sleep: normalizeSleepState(parsed.sleep)
         };
       } catch (err) {
         return freshState();
@@ -1064,7 +1495,8 @@
         coffeeRedeemed: 0,
         logs: {},
         subjects: JSON.parse(JSON.stringify(defaultSubjects)),
-        history: []
+        history: [],
+        sleep: normalizeSleepState(null)
       };
     }
 
@@ -1163,6 +1595,301 @@
       return streak;
     }
 
+
+    function normalizeSleepState(raw) {
+      const safe = raw && typeof raw === "object" ? raw : {};
+      return {
+        logs: safe.logs && typeof safe.logs === "object" ? safe.logs : {},
+        milkTeaRedeemed: Number(safe.milkTeaRedeemed || 0),
+        startedAtDate: safe.startedAtDate || localDateString()
+      };
+    }
+
+    function ensureSleepState() {
+      if (!state.sleep || typeof state.sleep !== "object") state.sleep = normalizeSleepState(null);
+      if (!state.sleep.logs || typeof state.sleep.logs !== "object") state.sleep.logs = {};
+      if (!state.sleep.startedAtDate) state.sleep.startedAtDate = localDateString();
+      state.sleep.milkTeaRedeemed = Number(state.sleep.milkTeaRedeemed || 0);
+    }
+
+    function addDays(date, days) {
+      return new Date(date.getTime() + days * dayMs);
+    }
+
+    function previousDateKey(date = new Date()) {
+      return localDateString(addDays(parseDateKey(localDateString(date)), -1));
+    }
+
+    function getMinutesOfDay(date = new Date()) {
+      return date.getHours() * 60 + date.getMinutes();
+    }
+
+    function displayTime(date = new Date()) {
+      return `${pad(date.getHours())}:${pad(date.getMinutes())}`;
+    }
+
+    function getSleepDayKeyForNow(date = new Date()) {
+      const minutes = getMinutesOfDay(date);
+      if (minutes <= 30) return previousDateKey(date);
+      return localDateString(date);
+    }
+
+    function isSleepWindowOpen(date = new Date()) {
+      const minutes = getMinutesOfDay(date);
+      return minutes >= SLEEP_OPEN_MINUTES || minutes <= 30;
+    }
+
+    function getLastCompletedSleepDayKey(date = new Date()) {
+      const todayStart = parseDateKey(localDateString(date));
+      const minutes = getMinutesOfDay(date);
+      return localDateString(addDays(todayStart, minutes > 30 ? -1 : -2));
+    }
+
+    function getSleepStreakAnchor(date = new Date(), stateObj = state) {
+      ensureSleepState();
+      const minutes = getMinutesOfDay(date);
+      const openKey = getSleepDayKeyForNow(date);
+      const log = (stateObj.sleep && stateObj.sleep.logs || {})[openKey];
+      if ((minutes >= SLEEP_OPEN_MINUTES || minutes <= 30) && log && log.status === "success") return openKey;
+      return getLastCompletedSleepDayKey(date);
+    }
+
+    function autoMarkMissedSleep() {
+      ensureSleepState();
+      const start = parseDateKey(state.sleep.startedAtDate);
+      const lastCompleted = parseDateKey(getLastCompletedSleepDayKey());
+      if (lastCompleted < start) return false;
+      let changed = false;
+      for (let cursor = new Date(start); cursor <= lastCompleted; cursor = addDays(cursor, 1)) {
+        const key = localDateString(cursor);
+        if (!state.sleep.logs[key]) {
+          state.sleep.logs[key] = {
+            status: "fail",
+            bedTime: "未打卡",
+            note: "超过 00:30 未完成早睡打卡，系统自动判定失败。",
+            reason: "missed",
+            createdAt: new Date().toISOString()
+          };
+          changed = true;
+        }
+      }
+      if (changed) saveState();
+      return changed;
+    }
+
+    function calcSleepStreak(stateObj = state, date = new Date()) {
+      const logs = (stateObj.sleep && stateObj.sleep.logs) || {};
+      let cursor = parseDateKey(getSleepStreakAnchor(date, stateObj));
+      let streak = 0;
+      while (logs[localDateString(cursor)] && logs[localDateString(cursor)].status === "success") {
+        streak += 1;
+        cursor = addDays(cursor, -1);
+      }
+      return streak;
+    }
+
+    function totalSleepSuccess(stateObj = state) {
+      const logs = (stateObj.sleep && stateObj.sleep.logs) || {};
+      return Object.values(logs).filter(log => log && log.status === "success").length;
+    }
+
+    function sleepWeekCount(stateObj = state) {
+      const now = new Date();
+      const day = now.getDay() || 7;
+      const monday = addDays(parseDateKey(localDateString(now)), 1 - day);
+      const logs = (stateObj.sleep && stateObj.sleep.logs) || {};
+      let count = 0;
+      for (let i = 0; i < 7; i++) {
+        const key = localDateString(addDays(monday, i));
+        if (logs[key] && logs[key].status === "success") count += 1;
+      }
+      return count;
+    }
+
+    function totalMilkTeaEarned(stateObj = state) {
+      const logs = (stateObj.sleep && stateObj.sleep.logs) || {};
+      const keys = Object.keys(logs).sort();
+      let run = 0;
+      let earned = 0;
+      keys.forEach(key => {
+        const log = logs[key];
+        if (log && log.status === "success") {
+          run += 1;
+          if (run % 7 === 0) earned += 1;
+        } else {
+          run = 0;
+        }
+      });
+      return earned;
+    }
+
+    function availableMilkTea() {
+      ensureSleepState();
+      return Math.max(0, totalMilkTeaEarned() - Number(state.sleep.milkTeaRedeemed || 0));
+    }
+
+    function redeemMilkTea() {
+      ensureSleepState();
+      const available = availableMilkTea();
+      if (available <= 0) {
+        const progress = calcSleepStreak() % 7;
+        const lack = progress === 0 ? 7 : 7 - progress;
+        showToast(`距离下一杯奶茶还差 ${lack} 天早睡，加油呀 🧋`);
+        return;
+      }
+      state.sleep.milkTeaRedeemed += 1;
+      saveState();
+      render();
+      showModal("🧋", "奶茶兑换成功", "已记录一杯“董纪君请客奶茶”。历史早睡记录不会清零，继续保持规律作息。");
+    }
+
+    function sleepCheckin() {
+      ensureSleepState();
+      autoMarkMissedSleep();
+      const now = new Date();
+      const minutes = getMinutesOfDay(now);
+      const nowText = displayTime(now);
+      const note = document.getElementById("sleepNote").value.trim();
+      const beforeAvailable = availableMilkTea();
+
+      if (isSleepWindowOpen(now)) {
+        const key = getSleepDayKeyForNow(now);
+        const existed = state.sleep.logs[key];
+        if (existed && existed.status === "success") {
+          showToast("这晚已经完成早睡打卡啦 🌙");
+          return;
+        }
+        if (existed && existed.status === "fail") {
+          showToast("这晚已经被记录为失败，不能补卡修改喔");
+          return;
+        }
+        state.sleep.logs[key] = {
+          status: "success",
+          bedTime: nowText,
+          note: note || "今晚按时准备睡觉。",
+          reason: "checked",
+          createdAt: now.toISOString()
+        };
+        state.history.push({ type: "sleepCheckin", date: key, status: "success", bedTime: nowText, time: now.toISOString() });
+        saveState();
+        render();
+        const afterAvailable = availableMilkTea();
+        if (afterAvailable > beforeAvailable) {
+          showModal("🧋", "连续 7 天早睡达成", "恭喜获得 1 张“董纪君请客奶茶券”！早睡自律也值得被奖励。");
+        } else {
+          showModal("🌙", "早睡打卡成功", "已经记录今晚早睡。睡好也是备考计划的一部分，Kitty 给你盖好小被子啦。");
+        }
+        return;
+      }
+
+      if (minutes > 30 && minutes <= SLEEP_LATE_RECORD_LIMIT) {
+        const key = previousDateKey(now);
+        if (!state.sleep.logs[key]) {
+          state.sleep.logs[key] = {
+            status: "fail",
+            bedTime: nowText,
+            note: note || "超过 00:30 才打卡，按规则判定早睡失败。",
+            reason: "late",
+            createdAt: now.toISOString()
+          };
+          state.history.push({ type: "sleepCheckin", date: key, status: "fail", bedTime: nowText, time: now.toISOString() });
+          saveState();
+          render();
+        }
+        showModal("🌧️", "早睡打卡失败", "现在已经超过 00:30，本次按规则记录为失败。失败会中断连续早睡，但不会删除历史累计记录。明晚重新开始就好。");
+        return;
+      }
+
+      showToast("现在不在早睡打卡时间。请在 23:00–00:30 点击“我准备睡啦” 🌙");
+    }
+
+    function undoTonightSleep() {
+      ensureSleepState();
+      const key = getSleepDayKeyForNow();
+      const log = state.sleep.logs[key];
+      if (!log) {
+        showToast("今晚还没有早睡记录可以撤回");
+        return;
+      }
+      if (!confirm("确定撤回这晚的早睡记录吗？撤回后如果超过 00:30，系统会再次判定失败。")) return;
+      delete state.sleep.logs[key];
+      state.history.push({ type: "undoSleep", date: key, time: new Date().toISOString() });
+      state.sleep.milkTeaRedeemed = Math.min(state.sleep.milkTeaRedeemed, totalMilkTeaEarned());
+      saveState();
+      render();
+      showToast("已撤回这晚的早睡记录");
+    }
+
+    function renderSleepPanel() {
+      ensureSleepState();
+      autoMarkMissedSleep();
+      const now = new Date();
+      const minutes = getMinutesOfDay(now);
+      const sleepKey = getSleepDayKeyForNow(now);
+      const log = state.sleep.logs[sleepKey];
+      const streak = calcSleepStreak();
+      const successTotal = totalSleepSuccess();
+      const week = sleepWeekCount();
+      const earned = totalMilkTeaEarned();
+      state.sleep.milkTeaRedeemed = Math.min(Number(state.sleep.milkTeaRedeemed || 0), earned);
+      const available = availableMilkTea();
+      const progressRaw = streak % 7;
+      const displayProgress = available > 0 ? 7 : progressRaw;
+      const lack = progressRaw === 0 ? 7 : 7 - progressRaw;
+
+      document.getElementById("sleepStreak").textContent = streak;
+      document.getElementById("sleepWeekCount").textContent = week;
+      document.getElementById("sleepTotalSuccess").textContent = successTotal;
+      document.getElementById("milkTeaEarnedCount").textContent = earned;
+      document.getElementById("milkTeaAvailableCount").textContent = available;
+      document.getElementById("milkTeaRedeemedCount").textContent = state.sleep.milkTeaRedeemed;
+      document.getElementById("milkTeaProgressText").textContent = `${displayProgress} / 7 天`;
+      document.getElementById("milkTeaBar").style.width = `${Math.min(100, (displayProgress / 7) * 100)}%`;
+      document.getElementById("sleepWindowText").textContent = "23:00–00:30";
+
+      if (log && log.status === "success") {
+        document.getElementById("sleepStatusText").textContent = "早睡成功 ✅";
+        document.getElementById("sleepResult").textContent = `已在 ${log.bedTime} 完成早睡打卡。今晚好好休息，明天继续高效备考。`;
+      } else if (log && log.status === "fail") {
+        document.getElementById("sleepStatusText").textContent = "打卡失败 ❌";
+        document.getElementById("sleepResult").textContent = log.reason === "missed"
+          ? "这晚超过 00:30 未打卡，系统已自动判定失败。连续早睡会重新开始。"
+          : "这晚超过 00:30 才打卡，按规则判定失败。明晚重新开始，不删除历史累计。";
+      } else if (isSleepWindowOpen(now)) {
+        document.getElementById("sleepStatusText").textContent = "可打卡 🌙";
+        document.getElementById("sleepResult").textContent = "现在处于早睡打卡时间，点击“我准备睡啦”即可完成今晚早睡记录。";
+      } else if (minutes > 30 && minutes < SLEEP_OPEN_MINUTES) {
+        document.getElementById("sleepStatusText").textContent = "今晚待打卡 🌙";
+        document.getElementById("sleepResult").textContent = "今晚 23:00 后可以打卡。若到次日 00:30 仍未打卡，会自动判定失败。";
+      } else {
+        document.getElementById("sleepStatusText").textContent = "待打卡 🌙";
+        document.getElementById("sleepResult").textContent = "今晚 23:00 到 00:30 之间记得完成早睡打卡。";
+      }
+
+      document.getElementById("milkTeaInfo").innerHTML = available > 0
+        ? `🎉 已获得 <strong>${available}</strong> 张奶茶券！<br>可以找 <strong>董纪君</strong> 兑换奶茶啦。`
+        : `距离下一杯奶茶还差 <strong>${lack} 天</strong>连续早睡。<br>连续 7 天早睡，就能获得一杯甜甜的奶茶奖励。`;
+
+      const entries = Object.entries(state.sleep.logs).sort((a, b) => b[0].localeCompare(a[0])).slice(0, 10);
+      const list = document.getElementById("sleepLogs");
+      if (!entries.length) {
+        list.innerHTML = `<div class="voucher">还没有早睡记录。今晚 23:00 后开始第一天吧 🌙</div>`;
+      } else {
+        list.innerHTML = entries.map(([date, item]) => {
+          const ok = item.status === "success";
+          const statusText = ok ? "成功" : "失败";
+          const noteText = item.note || (ok ? "按时准备睡觉。" : "未按时完成早睡打卡。");
+          return `
+            <div class="sleep-log-item">
+              <div class="sleep-log-date">${date.slice(5).replace("-", "/")}</div>
+              <div class="sleep-log-status ${ok ? "success" : "fail"}">${statusText}</div>
+              <div class="sleep-log-note">${escapeHtml(item.bedTime || "--")} · ${escapeHtml(noteText)}</div>
+            </div>
+          `;
+        }).join("");
+      }
+    }
+
     function daysUntilExam() {
       const today = parseDateKey(localDateString());
       const exam = parseDateKey(EXAM_DATE);
@@ -1177,6 +1904,16 @@
       if (days <= 60) return "刷题冲刺期：现在每一道错题，都是考前送来的提醒。";
       if (days <= 100) return "强化提升期：错题和薄弱科目要开始重点照顾，别只学喜欢的科目。";
       return "基础积累期：不用急，但要稳。每天坚持一点点，后面会轻松很多。";
+    }
+
+    function getStageLabel(days) {
+      if (days < 0) return "新计划";
+      if (days === 0) return "考试日";
+      if (days <= 7) return "最后稳心态";
+      if (days <= 30) return "考前稳定期";
+      if (days <= 60) return "刷题冲刺期";
+      if (days <= 100) return "强化提升期";
+      return "基础积累期";
     }
 
     function addHours(hours, options = {}) {
@@ -1447,7 +2184,10 @@
       const active = activeDates();
       const coffeeProgress = nextCoffeeProgress();
       const available = availableCoffee();
-      const energy = Math.min(100, Math.round(Number(log.hours || 0) * 10));
+      ensureSleepState();
+      const sleepKeyForEnergy = getSleepDayKeyForNow();
+      const sleepBonus = state.sleep.logs[sleepKeyForEnergy] && state.sleep.logs[sleepKeyForEnergy].status === "success" ? 20 : 0;
+      const energy = Math.min(100, Math.round(Number(log.hours || 0) * 10 + sleepBonus));
 
       document.getElementById("todayText").textContent = `🎀 ${formatDateCN(now)}`;
       document.getElementById("daysLeft").textContent = days >= 0 ? days : 0;
@@ -1460,6 +2200,10 @@
       document.getElementById("todayHours").textContent = formatHours(log.hours || 0);
       document.getElementById("todayStatus").textContent = Number(log.hours || 0) > 0 ? "已打卡 ✅" : "未打卡 🎀";
       document.getElementById("todayNote").value = log.note || "";
+      const mobileTodayHours = document.getElementById("mobileTodayHours");
+      const mobileStageText = document.getElementById("mobileStageText");
+      if (mobileTodayHours) mobileTodayHours.textContent = formatHours(log.hours || 0);
+      if (mobileStageText) mobileStageText.textContent = `还剩 ${days >= 0 ? days : 0} 天 · ${getStageLabel(days)}`;
 
       const displayLack = coffeeProgress === 0 ? 20 : Math.round((20 - coffeeProgress) * 10) / 10;
       const displayProgress = available > 0 ? 20 : coffeeProgress;
@@ -1468,15 +2212,24 @@
         : `距离下一杯咖啡还差 <strong>${formatHours(displayLack)} 小时</strong>。<br>每学 0.5 小时，都在靠近一杯甜甜的奖励。`;
       document.getElementById("coffeeProgressText").textContent = `${formatHours(displayProgress)} / 20 h`;
       document.getElementById("coffeeBar").style.width = `${Math.min(100, (displayProgress / 20) * 100)}%`;
+      const mobileCoffeeLine = document.getElementById("mobileCoffeeLine");
+      if (mobileCoffeeLine) {
+        mobileCoffeeLine.innerHTML = available > 0
+          ? `☕ 已解锁 <strong>${available}</strong> 张咖啡券，可以兑换啦！`
+          : `☕ 下一杯还差 <strong>${formatHours(displayLack)} 小时</strong>，当前 ${formatHours(displayProgress)} / 20 h`;
+      }
 
       document.getElementById("energyText").textContent = `${energy} / 100`;
       document.getElementById("energyBar").style.width = `${energy}%`;
       if (energy === 0) document.getElementById("energyResult").textContent = "Kitty 在等你打开书哦，哪怕先学半小时也很棒。";
+      else if (sleepBonus > 0 && energy >= 70) document.getElementById("energyResult").textContent = "今天学习和早睡都很稳，Kitty 能量满满，明天会更清醒。";
+      else if (sleepBonus > 0) document.getElementById("energyResult").textContent = "早睡也给 Kitty 加了能量，今晚好好休息，明天继续上岸。";
       else if (energy < 30) document.getElementById("energyResult").textContent = "Kitty 已经收到一点学习能量啦，再来半小时会更棒。";
       else if (energy < 70) document.getElementById("energyResult").textContent = "今天状态不错，学习小火苗已经点起来了。";
       else if (energy < 100) document.getElementById("energyResult").textContent = "学习状态很棒，Kitty 正在为你鼓掌。";
       else document.getElementById("energyResult").textContent = "Kitty 今天被你喂饱学习能量啦，闪闪发光！";
 
+      renderSleepPanel();
       renderSubjects();
       renderCalendar();
       renderLogs();
@@ -1643,7 +2396,8 @@
             coffeeRedeemed: Number(data.coffeeRedeemed || 0),
             logs: data.logs && typeof data.logs === "object" ? data.logs : {},
             subjects: Array.isArray(data.subjects) ? data.subjects : JSON.parse(JSON.stringify(defaultSubjects)),
-            history: Array.isArray(data.history) ? data.history : []
+            history: Array.isArray(data.history) ? data.history : [],
+            sleep: normalizeSleepState(data.sleep)
           };
           state.coffeeRedeemed = Math.min(state.coffeeRedeemed, Math.floor(state.totalHours / 20));
           if (data.activeTimer && typeof data.activeTimer === "object") {
@@ -1720,6 +2474,10 @@
     document.getElementById("cancelTimerBtn").addEventListener("click", cancelStudyTimer);
     document.getElementById("redeemCoffeeBtn").addEventListener("click", redeemCoffee);
     document.getElementById("undoLastBtn").addEventListener("click", undoLastAdd);
+    document.getElementById("sleepCheckinBtn").addEventListener("click", sleepCheckin);
+    document.getElementById("undoSleepBtn").addEventListener("click", undoTonightSleep);
+    document.getElementById("redeemMilkTeaBtn").addEventListener("click", redeemMilkTea);
+    document.getElementById("jumpSleepLogsBtn").addEventListener("click", () => scrollToCard("milkTeaCard"));
     document.getElementById("changeQuoteBtn").addEventListener("click", changeQuote);
     document.getElementById("drawCardBtn").addEventListener("click", drawEnergyCard);
     document.getElementById("exportBtn").addEventListener("click", exportData);
@@ -1736,6 +2494,43 @@
     document.getElementById("timerBackdrop").addEventListener("click", e => {
       if (e.target.id === "timerBackdrop") showToast("倒计时进行中，不能点外面关闭；可以暂停或取消本次 🎀");
     });
+
+    function scrollToCard(id) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    const focusNoteBtn = document.getElementById("focusNoteBtn");
+    if (focusNoteBtn) {
+      focusNoteBtn.addEventListener("click", () => {
+        scrollToCard("checkinCard");
+        setTimeout(() => document.getElementById("todayNote").focus(), 380);
+      });
+    }
+
+    const mobileNoteBtn = document.getElementById("mobileNoteBtn");
+    if (mobileNoteBtn) {
+      mobileNoteBtn.addEventListener("click", () => {
+        scrollToCard("checkinCard");
+        setTimeout(() => document.getElementById("todayNote").focus(), 380);
+      });
+    }
+
+    const mobileSleepBtn = document.getElementById("mobileSleepBtn");
+    if (mobileSleepBtn) {
+      mobileSleepBtn.addEventListener("click", () => scrollToCard("sleepCard"));
+    }
+
+    const jumpSleepBtn = document.getElementById("jumpSleepBtn");
+    if (jumpSleepBtn) {
+      jumpSleepBtn.addEventListener("click", () => scrollToCard("sleepCard"));
+    }
+
+    const jumpLogsBtn = document.getElementById("jumpLogsBtn");
+    if (jumpLogsBtn) {
+      jumpLogsBtn.addEventListener("click", () => scrollToCard("logsCard"));
+    }
 
     const quoteIndex = Math.abs(localDateString().split("").reduce((sum, ch) => sum + ch.charCodeAt(0), 0)) % quotes.length;
     document.getElementById("dailyQuote").textContent = quotes[quoteIndex];
